@@ -8,6 +8,9 @@ MANIFEST
 README.md
 META.json
 sample_input/c91662.swc
+sample_input/testingA.swc
+sample_input/testingB.swc
+sample_input/testingC.swc
 t/00-load.t
 t/manifest.t
 t/pod-coverage.t
