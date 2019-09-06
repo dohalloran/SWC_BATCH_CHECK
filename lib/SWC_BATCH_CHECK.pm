@@ -91,7 +91,7 @@ has help => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 0,
-    documentation => qq{view driver script for input flag details}
+    documentation => qq{view README file for input flag details}
 );
 
 ##################################
