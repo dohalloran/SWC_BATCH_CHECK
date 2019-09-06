@@ -37,7 +37,7 @@ $app->run_SWC_BATCH_CHECK();
 #see below for command flags
 ``` 
 ## Command Line Arguments
-### Filtering Options
+### Flags
  ```perl   
 #path to input directory containing SWC files
         --d ./my_SWC_directory
@@ -64,7 +64,7 @@ $app->run_SWC_BATCH_CHECK();
 All contributions are welcome.
 
 ## Support
-If you have any problem or suggestion please open an issue [here](https://github.com/dohalloran/fastQ_brew/issues).
+If you have any problem or suggestion please open an issue [here](https://github.com/dohalloran/SWC_BATCH_CHECK/issues).
 
 ## License 
 GNU GENERAL PUBLIC LICENSE
