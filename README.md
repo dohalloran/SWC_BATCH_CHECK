@@ -60,6 +60,15 @@ $app->run_SWC_BATCH_CHECK();
 
 3. Ewing B, Green P. Base-calling of automated sequencer traces using phred. II. Error probabilities. Genome Res. 1998;8(3):186–94.
 
+## Testing
+
+SWC_BATCH_CHECK was successfully tested on:
+
+- [x] Microsoft Windows 7 Enterprise ver.6.1
+- [x] MacOSX Mojave ver.10.14.5
+- [x] Linux Ubuntu 64-bit ver.14.04 LTS
+
+
 ## Contributing
 All contributions are welcome.
 
