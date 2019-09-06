@@ -54,7 +54,7 @@ $app->run_SWC_BATCH_CHECK();
 ```
 
 ### References
-1. SWC Format Specification[http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html]
+1. (SWC Format Specification)[http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html]
 
 2. Stockley, E. W., Cole, H. M., Brown, A. D. and Wheal, H. V. (1993) A system for quantitative morphological measurement and electronic modelling of neurons: three-dimensional reconstruction. Journal of Neuroscience Methods, 47, 39-51
 
