@@ -54,11 +54,10 @@ $app->run_SWC_BATCH_CHECK();
 ```
 
 ### References
-1. Cock PJ, Fields CJ, Goto N, Heuer ML, Rice PM. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Res. 2010;38(6):1767–71
+1. SWC Format Specification[http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html]
 
-2. Ewing B, Hillier L, Wendl MC, Green P. Base-calling of automated sequencer traces using phred. I. Accuracy assessment. Genome Res. 1998;8(3):175–85.
+2. Stockley, E. W., Cole, H. M., Brown, A. D. and Wheal, H. V. (1993) A system for quantitative morphological measurement and electronic modelling of neurons: three-dimensional reconstruction. Journal of Neuroscience Methods, 47, 39-51
 
-3. Ewing B, Green P. Base-calling of automated sequencer traces using phred. II. Error probabilities. Genome Res. 1998;8(3):186–94.
 
 ## Testing
 
