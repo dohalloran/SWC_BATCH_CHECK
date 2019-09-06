@@ -19,7 +19,7 @@ or
 `git clone https://github.com/dohalloran/SWC_BATCH_CHECK.git`
 2. The extracted dir will be called SWC_BATCH_CHECK  
 ```cmd  
-cd fastQ_brew   
+cd SWC_BATCH_CHECK   
 perl Makefile.PL  
 make  
 make test  
