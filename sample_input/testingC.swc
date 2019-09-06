@@ -1,0 +1,19 @@
+# Original file ACELL1.swc edited using StdSwc version 1.31 on 4/19/16.
+# Irregularities and fixes documented in ACELL1.swc.std.  See StdSwc1.31.doc for more information.
+#
+# Neurolucida to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Documents and Settings\DataProcessing\Desktop\Lewis\ACELL1.TXT.asc
+#The original file has a single soma contour that is averaged into 3 soma points
+# NEUROMANTIC V1.7.5 (2/23/2016 3:04:35 PM): Saved to ACELL1-T1.swc
+1 1 0.0 0.0 0.0 10.503 -1
+2 1 -0.46 10.49 0.0 10.503 1
+3 1 0.46 -10.49 0.0 10.503 1
+4 4 -0.64 12.57 0.52 3.5 1
+5 4 -0.21 14.09 -0.97 3.5 4
+6 4 0.22 15.61 -1.97 3.5 5
+7 4 0.15 17.11 -1.97 3.4 6
+8 4 0.11 18.11 -1.97 3.35 7
+9 4 0.0 20.61 -2.97 3.3 4
+10 4 -0.56 22.08 -2.97 3.2 9
+11 4 -0.12 23.6 -2.97 3.1 10
+12 4 -0.65 24.08 -2.97 3.0 11
