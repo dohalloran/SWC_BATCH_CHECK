@@ -39,8 +39,8 @@ $app->run_SWC_BATCH_CHECK();
 ## Command Line Arguments
 ### Flags
  ```perl   
-#path to input directory containing SWC files
-        --d ./my_SWC_directory
+#path to input directory containing SWC files (required)
+        --d ./my_SWC_directory/
 #provide corrections to soma that are not connected to other soma       
         --soma
 #ensures apical dendrites are connected to apical dendrite or soma
