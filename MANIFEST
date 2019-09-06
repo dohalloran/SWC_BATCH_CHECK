@@ -1,0 +1,14 @@
+Changes
+ignore.txt
+xt/boilerplate.t
+lib/SWC_BATCH_CHECK.pm
+LICENSE
+Makefile.PL
+MANIFEST			
+README.md
+META.json
+sample_input/c91662.swc
+t/00-load.t
+t/manifest.t
+t/pod-coverage.t
+t/pod.t
