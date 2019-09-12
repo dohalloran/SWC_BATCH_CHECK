@@ -67,7 +67,6 @@ SWC_BATCH_CHECK was successfully tested on:
 
 - [x] Microsoft Windows 7 Enterprise ver.6.1
 - [x] MacOSX Mojave ver.10.14.5
-- [x] Linux Ubuntu 64-bit ver.14.04 LTS
 
 
 ## Contributing
