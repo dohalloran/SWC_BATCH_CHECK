@@ -4,7 +4,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/dohalloran/SWC_BATCH_CHECK.svg)](https://github.com/dohalloran/SWC_BATCH_CHECK/issues)
 
 - [x] `Batch validation of directory containing SWC files`
-- [x] `Ensures structures are correcrly connected`
+- [x] `Ensures structures are correctly connected`
 - [x] `Fix structures with zero size diameter `
 - [x] `Corrects index sequence`
 - [x] `Reports on missing data`
