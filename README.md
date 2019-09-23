@@ -17,8 +17,11 @@
 `tar -xzvf SWC_BATCH_CHECK.zip`
 or 
 `git clone https://github.com/dohalloran/SWC_BATCH_CHECK.git`
+
 2. `cd SWC_BATCH_CHECK-master`
+
 3. `chmod +x install.sh`
+
 4. `./install.sh` or `sudo ./install.sh`
 if dependency fails you can try using force `--force` 
 
