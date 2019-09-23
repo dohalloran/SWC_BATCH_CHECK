@@ -1,5 +1,6 @@
 Changes
 ignore.txt
+install.sh
 xt/boilerplate.t
 lib/SWC_BATCH_CHECK.pm
 LICENSE

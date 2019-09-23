@@ -23,6 +23,7 @@ WriteMakefile(
         'Moose'                   => 2.0,
         'Modern::Perl'            => 1.0,
         'List::Util'              => 0,
+        'List::MoreUtils'         => 0,
         'Win32::Console::ANSI'    => 0
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

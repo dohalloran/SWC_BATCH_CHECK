@@ -17,14 +17,23 @@
 `tar -xzvf SWC_BATCH_CHECK.zip` 
 or 
 `git clone https://github.com/dohalloran/SWC_BATCH_CHECK.git`
-2. The extracted dir will be called SWC_BATCH_CHECK  
-```cmd  
-cd SWC_BATCH_CHECK   
+2. `cd SWC_BATCH_CHECK-master`
+3. `chmod +x install.sh`
+4. `./install.sh` or `sudo ./install.sh`
+if dependency fails you can try using force `--force`
+on MacOS Majave you will need Xcode, CommandLineTools, and headers
+Install Xcode and then the CommandLineTools from Xcode
+For headers:
+`xcode-select --install`
+`open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg`
+5.  
+```cmd    
 perl Makefile.PL  
 make  
 make test  
 make install  
 ```
+might need to `sudo make install` depending on permissions
 
 ## Usage 
 ### To run:  
@@ -49,6 +58,8 @@ $app->run_SWC_BATCH_CHECK();
         --basal
 #converts radius = 0 entries to that of its parent's radius
         --rad
+#compression of output SWC directory
+        --zip
 #print flag options to stdout
         --help 
 ```
@@ -67,6 +78,7 @@ SWC_BATCH_CHECK was successfully tested on:
 
 - [x] Microsoft Windows 7 Enterprise ver.6.1
 - [x] MacOSX Mojave ver.10.14.5
+- [x] Linux Mint ver.19 Tara
 
 
 ## Contributing

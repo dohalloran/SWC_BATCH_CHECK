@@ -48,16 +48,16 @@ The rest of the documentation details each method
 
 package SWC_BATCH_CHECK;
 
-use Moose;
-with 'MooseX::Getopt', 'MooseX::Getopt::Usage::Role::Man';
 use Modern::Perl;
+use Moose;
+with 'MooseX::Getopt';
 use if ( $^O eq 'MSWin32' ), 'Win32::Console::ANSI';
 use Term::ANSIColor qw(:constants);
+use List::Util qw( min max sum );
 use List::MoreUtils qw( uniq );
 use Sys::Hostname;
 use File::Basename;
-use List::Util qw( min max sum);
-no if $] >= 5.017011, warnings => 'experimental::smartmatch';
+use Archive::Zip;
 use autodie;
 
 ##################################
@@ -74,6 +74,7 @@ our $VERSION = '1.0';
   --apic, ensures apical dendrites are connected to apical dendrite or soma   
   --basal, same as --apic flag except for basal dendrite
   --rad, converts radius = 0 entries to that of its parent's radius
+  --zip, compress new SWC directory
   --help, Print this help
 
 =cut
@@ -85,6 +86,7 @@ has 'soma'  => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'apic'  => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'basal' => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'rad'   => ( is => 'rw', isa => 'Bool', default  => 0 );
+has 'zip'   => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'start' => ( is => 'ro', isa => 'Int',  default  => time );
 
 has help => (
@@ -121,7 +123,7 @@ sub run_SWC_BATCH_CHECK {
     print BOLD GREEN, "\nCommand-line: \t\t" . $commandline;
     print "\nOperating system: \t" . $^O;
     print "\nHostname: \t\t" . hostname;
-    print "\nSWC_BATCH_CHECK version: \t" . $VERSION;
+    print "\nSWC_BATCH_CHECK ver: \t" . $VERSION;
 
     foreach my $files ( glob("$dir/*.swc") ) {
 
@@ -134,7 +136,8 @@ sub run_SWC_BATCH_CHECK {
 
         # log data on sys and infile
         my $inSize = -s $files;
-        print BOLD CYAN, "\n\n" . "Validating file with SWC_BATCH_CHECK...\n", RESET;
+        print BOLD CYAN, "\n\n" . "Validating file with SWC_BATCH_CHECK...\n",
+          RESET;
         print "\nInput file name: \t" . basename($files);
         print "\nInput file size: \t" . $inSize . "KB", RESET;
 
@@ -155,9 +158,9 @@ sub run_SWC_BATCH_CHECK {
 
                 @arr = split /\s+/, $line;
                 if ( ( _is_integer( $arr[0] ) ) && ( $arr[0] != $count ) ) {
-                #######################################################
-                #check if index values are in sequence
-                    unshift @arr, " "; #placeholder
+                    #######################################################
+                    #check if index values are in sequence
+                    unshift @arr, " ";    #placeholder
                     print $el
                       "[Correction] Error in n+1 sequence on index line: "
                       . $count
@@ -174,6 +177,7 @@ sub run_SWC_BATCH_CHECK {
                 }
 
                 my $index = 0;
+
                 #data type check
                 #add to arrays
                 if (   ( length( $arr[1] ) )
@@ -192,6 +196,7 @@ sub run_SWC_BATCH_CHECK {
                     push @y_coord,   $arr[3];
                     push @z_coord,   $arr[4];
                     push @radius,    $arr[5];
+
                     #correct empty parent values
                     if ( !$arr[6] ) {
                         push @parent, $parent[-1];
@@ -211,12 +216,12 @@ sub run_SWC_BATCH_CHECK {
                                 ( $y_coord[$index] ) -
                                   ( $y_coord[ $index - 1 ] )
                             )**2
-                        ) + (
+                          ) + (
                             abs(
                                 ( $z_coord[$index] ) -
                                   ( $z_coord[ $index - 1 ] )
                             )**2
-                        )
+                          )
                     );
                     push @distance, $euclid;
                     $count++;
@@ -248,6 +253,7 @@ sub run_SWC_BATCH_CHECK {
         my @basal_;
         my @apical_;
         my $val;
+
         #build containers for connections
         for my $j ( 0 .. $#parent ) {
             my $tracker = $j + 1;
@@ -269,7 +275,7 @@ sub run_SWC_BATCH_CHECK {
             }
         }
         #######################################################
-        #check connections for soma 
+        #check connections for soma
         for my $k ( 0 .. $#parent ) {
             my $tracker = $k + 1;
             if ( $self->{soma} eq 1 ) {
@@ -289,8 +295,8 @@ sub run_SWC_BATCH_CHECK {
                 }
 
             }
-        #######################################################
-        #check for radius size = 0 and correct or add warnings
+            #######################################################
+            #check for radius size = 0 and correct or add warnings
             if ( $self->{rad} eq 1 ) {
                 my $look_up = $parent[$k];
                 if ( $radius[$k] == 0 ) {
@@ -310,8 +316,8 @@ sub run_SWC_BATCH_CHECK {
                   . " in file "
                   . basename($files) . "\n";
             }
-        #######################################################
-        #check connections for basal dendrites 
+            #######################################################
+            #check connections for basal dendrites
             if ( $self->{basal} eq 1 ) {
                 my $look_up = $parent[$k];
                 if ( $structure[$k] == 3 ) {
@@ -337,8 +343,8 @@ sub run_SWC_BATCH_CHECK {
                     }
                 }
             }
-        #######################################################
-        #check connections for apical dendrites 
+            #######################################################
+            #check connections for apical dendrites
             if ( $self->{apic} eq 1 ) {
                 my $look_up = $parent[$k];
                 if ( $structure[$k] == 4 ) {
@@ -433,11 +439,24 @@ sub run_SWC_BATCH_CHECK {
     if ( -z $error_log ) {
         unlink $error_log or die "Can't unlink empty file '$error_log': $!";
     }
+
+    #compress dir
+    if ( $self->{zip} eq 1 ) {
+        my $zip = Archive::Zip->new();
+
+        # add all .c files below /tmp as stuff/*
+        $zip->addTreeMatching( './NEW_SWC', 'zipped_swc', '\.swc$' );
+
+        # and write them into a file
+        $zip->writeToFileNamed('NEW_SWC.zip');
+    }
+
     # get time after execution and calc duration
     my $duration = time - $self->{start};
 
     print BOLD MAGENTA,
-      "\n\nSWC_BATCH_CHECK is now finished after " . $duration . "secs\n\n", RESET;
+      "\n\nSWC_BATCH_CHECK is now finished after " . $duration . "secs\n\n",
+      RESET;
 }
 
 ##################################
