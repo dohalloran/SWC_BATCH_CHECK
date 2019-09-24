@@ -18,7 +18,7 @@
 or 
 `git clone https://github.com/dohalloran/SWC_BATCH_CHECK.git`
 
-2. `cd SWC_BATCH_CHECK-master`
+2. `cd SWC_BATCH_CHECK`
 
 3. `chmod +x install.sh`
 
@@ -26,10 +26,14 @@ or
 if dependency fails you can try using force `--force` 
 
 on MacOS Majave you will need Xcode, CommandLineTools, and headers
+
 Install Xcode and then the CommandLineTools from Xcode
 
 For headers:
 `xcode-select --install`
+
+and then
+
 `open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg`
 
 5.  
