@@ -23,7 +23,7 @@ or
 3. `chmod +x install.sh`
 
 4. `./install.sh` or `sudo ./install.sh`
-    *  if dependency fails you can try using force `--force` 
+    *  if dependency fails you can try using `--force` 
     *  on MacOS Majave you will need Xcode, CommandLineTools, and headers
     *  Install Xcode and then the CommandLineTools from Xcode
     *  For headers: `xcode-select --install` 
@@ -36,7 +36,7 @@ make
 make test  
 make install  
 ```
-  *  might need to `sudo make install` depending on permissions
+   *  might need to `sudo make install` depending on permissions
 
 ## Usage 
 ### To run:  
