@@ -15,7 +15,7 @@
 ## Installation
 1. Download and extract the SWC_BATCH_CHECK.zip file  
 `tar -xzvf SWC_BATCH_CHECK.zip`
-or 
+or   
 `git clone https://github.com/dohalloran/SWC_BATCH_CHECK.git`
 
 2. `cd SWC_BATCH_CHECK`
@@ -23,16 +23,11 @@ or
 3. `chmod +x install.sh`
 
 4. `./install.sh` or `sudo ./install.sh`
-if dependency fails you can try using force `--force` 
-
-on MacOS Majave you will need Xcode, CommandLineTools, and headers
-
-Install Xcode and then the CommandLineTools from Xcode
-
-For headers:
-`xcode-select --install` and then
-
-`open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg`
+    *  if dependency fails you can try using force `--force` 
+    *  on MacOS Majave you will need Xcode, CommandLineTools, and headers
+    *  Install Xcode and then the CommandLineTools from Xcode
+    *  For headers: `xcode-select --install` 
+    *  and then: `open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg`
 
 5.  
 ```cmd    
@@ -41,7 +36,7 @@ make
 make test  
 make install  
 ```
-might need to `sudo make install` depending on permissions
+  *  might need to `sudo make install` depending on permissions
 
 ## Usage 
 ### To run:  
