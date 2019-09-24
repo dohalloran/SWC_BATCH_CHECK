@@ -30,9 +30,7 @@ on MacOS Majave you will need Xcode, CommandLineTools, and headers
 Install Xcode and then the CommandLineTools from Xcode
 
 For headers:
-`xcode-select --install`
-
-and then
+`xcode-select --install` and then
 
 `open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg`
 
