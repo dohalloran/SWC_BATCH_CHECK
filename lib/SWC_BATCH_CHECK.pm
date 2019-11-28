@@ -71,6 +71,7 @@ our $VERSION = '1.0';
  Args    :
   --d, input swc file (required)
   --soma, provide corrections to soma that are not connected to other soma
+  --axon, provide corrections to axon that are not connected to other axons or soma
   --apic, ensures apical dendrites are connected to apical dendrite or soma   
   --basal, same as --apic flag except for basal dendrite
   --rad, converts radius = 0 entries to that of its parent's radius
@@ -83,6 +84,7 @@ our $VERSION = '1.0';
 
 has 'd'     => ( is => 'rw', isa => 'Str',  required => 1 );
 has 'soma'  => ( is => 'rw', isa => 'Bool', default  => 0 );
+has 'axon'  => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'apic'  => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'basal' => ( is => 'rw', isa => 'Bool', default  => 0 );
 has 'rad'   => ( is => 'rw', isa => 'Bool', default  => 0 );
@@ -250,6 +252,7 @@ sub run_SWC_BATCH_CHECK {
 
         # connection containers
         my @soma_;
+        my @axon_;
         my @basal_;
         my @apical_;
         my $val;
@@ -262,6 +265,11 @@ sub run_SWC_BATCH_CHECK {
             if ( $structure[$j] == 1 ) {
                 my $soma_connect = $structure[$refer];
                 push @soma_, $soma_connect;
+            }
+
+            if ( $structure[$j] == 2 ) {
+                my $axon_connect = $structure[$refer];
+                push @axon_, $axon_connect;
             }
 
             if ( $structure[$j] == 3 ) {
@@ -294,6 +302,33 @@ sub run_SWC_BATCH_CHECK {
 
                 }
 
+            }
+            #######################################################
+            #check connections for axon
+            if ( $self->{axon} eq 1 ) {
+                my $look_up = $parent[$k];
+                if ( $structure[$k] == 2 ) {
+                    my $val = shift @axon_;
+                    unless ( $val == 1 || $val == 2 ) {
+                        if ( @axon_ != 0
+                            && ( $axon_[0] == 1 || $axon_[0] == 2 ) )
+                        {
+                            $structure[ $look_up - 1 ] = $axon_[0];
+                            print $el
+"[Correction] Axon incorrectly connected on data line: "
+                              . $tracker
+                              . " in file "
+                              . basename($files) . "\n";
+                        }
+                        else {
+                            print $el
+"[Warning] xon incorrectly connected on data line: "
+                              . $tracker
+                              . " in file "
+                              . basename($files) . "\n";
+                        }
+                    }
+                }
             }
             #######################################################
             #check for radius size = 0 and correct or add warnings
