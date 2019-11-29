@@ -335,8 +335,6 @@ sub run_SWC_BATCH_CHECK {
             if ( $self->{rad} eq 1 ) {
                 my $look_up = $parent[$k];
                 if ( $radius[$k] == 0 ) {
-                    print "\n" . $radius[$k];
-                    print "\n" . $radius[ $look_up - 1 ];
                     $radius[$k] = $radius[ $look_up - 1 ];
                     print $el
 "[Correction] Radius zero changed to parent radius on data line: "
