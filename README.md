@@ -39,14 +39,18 @@ make install
    *  might need to `sudo make install` depending on permissions
 
 ## Usage 
-### To run:  
+### To run, add the following into a driver script:  
 ```perl
 use SWC_BATCH_CHECK;
 use Modern::Perl;
 
 my $app = SWC_BATCH_CHECK->new_with_options();
 $app->run_SWC_BATCH_CHECK(); 
-#see below for command flags
+```
+### from the commandline:
+```cmd
+perl driver.pl --d ./my_SWC_directory
+#see command flags below
 ``` 
 ## Command Line Arguments
 ### Flags
