@@ -47,7 +47,7 @@ use Modern::Perl;
 my $app = SWC_BATCH_CHECK->new_with_options();
 $app->run_SWC_BATCH_CHECK(); 
 ```
-### from the commandline:
+### from the command-line:
 ```cmd
 perl driver.pl --d ./my_SWC_directory
 #see command flags below
