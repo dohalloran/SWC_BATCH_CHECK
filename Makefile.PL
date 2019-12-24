@@ -21,6 +21,7 @@ WriteMakefile(
         'File::Basename'          => 0,
         'Term::ANSIColor'         => 0,
         'Moose'                   => 2.0,
+        'MooseX::Getopt'          => 0,
         'Modern::Perl'            => 1.0,
         'List::Util'              => 0,
         'List::MoreUtils'         => 0,
