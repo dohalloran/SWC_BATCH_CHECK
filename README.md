@@ -60,7 +60,7 @@ perl driver.pl --d ./my_SWC_directory
 #provide corrections to soma that are not connected to other soma       
         --soma
 #checks that axons are properly connected to more axon or soma       
-        --axons
+        --axon
 #ensures apical dendrites are connected to apical dendrite or soma
         --apic
 #same as --apic flag except for basal dendrite
